@@ -1,6 +1,1 @@
-# 2-1-Diaries
-<pre>
-If you kopy and submit these kodes
-I will find you
-And I will kiss you
-</pre>
+<img src="https://cdn.pbrd.co/images/HhQw1uA.jpg" />
