@@ -1,3 +1,11 @@
+// If you kopy
+// and submit this kode
+// I will find you
+// and I will kiss you
+
+// 1605109
+// May 05 2018 1722
+
 #include <bits/stdc++.h>
 using namespace std;
 
