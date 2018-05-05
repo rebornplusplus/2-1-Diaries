@@ -1,6 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-
+#include <bits/stdc++.h>
+using namespace std;
 
 #define NULL_VALUE -99999
 #define SUCCESS_VALUE 99999
@@ -40,6 +39,7 @@ public:
         newNode->item = item ;
         newNode->next = list ; //point to previous first node
         list = newNode ; //set list to point to newnode as this is now the first node
+        if(length == 0) tail = list;
         length++;
         return SUCCESS_VALUE ;
     }
@@ -61,9 +61,11 @@ public:
             list = list->next ;
             delete temp ;
             length--;
+            if(length == 0) tail = 0;
         }
         else
         {
+            if(temp == tail) tail = prev;
             prev->next = temp->next ;
             delete temp;
             length--;
@@ -100,18 +102,50 @@ public:
     //------------write code for the functions below-----------
     int insertLast(int item)
     {
-        //write your codes here
+        if(length == 0) return insertItem(item);
+        ListNode *newNode = new ListNode();
+        newNode->item = item;
+        tail->next = newNode;
+        tail = newNode;
+        ++length;
+        return SUCCESS_VALUE;
     }
 
     ListNode * getItemAt(int pos)
     {
          //write your codes here
+         if(pos > length or pos < 1) return NULL;
 
+         ListNode *temp = new ListNode();
+         temp = list;
+         for(int i=2; i<=pos; ++i) temp = temp->next;
+         return temp;
     }
 
     int deleteLast()
     {
         //write your codes here
+        if(length == 0) return NULL_VALUE;
+        if(length == 1) {
+            delete list;
+            delete tail;
+            list = 0, tail = 0;
+            --length;
+            return SUCCESS_VALUE;
+        }
+
+        ListNode *temp, *prev;
+        temp = list;
+        while(temp != tail) {
+            prev = temp;
+            temp = temp->next;
+        }
+
+        prev->next = 0;
+        delete tail;
+        tail = prev;
+        length--;
+        return SUCCESS_VALUE;
     }
 };
 
@@ -122,7 +156,8 @@ int main(void)
     while(1)
     {
         printf("1. Insert new item. 2. Delete item. 3. Search item. \n");
-        printf("4. (Add from homework). 5. Print. 6. exit.\n");
+        printf("4. Insert Last. 5. Get Item at.\n");
+        printf("6. Delete Last. 7. Print. 8.Exit. \n");
 
         int ch;
         scanf("%d",&ch);
@@ -146,14 +181,30 @@ int main(void)
             if(res!=0) printf("Found.\n");
             else printf("Not found.\n");
         }
+        else if(ch == 4) {
+            int item;
+            scanf("%d", &item);
+            ll.insertLast(item);
+        }
         else if(ch==5)
         {
+            int pos;
+            scanf("%d", &pos);
+            ListNode *item = new ListNode();
+            item = ll.getItemAt(pos);
+            if(item == NULL) printf("No such positions found\n");
+            else printf("%d\n", item->item);
+        }
+        else if(ch == 6) {
+            ll.deleteLast();
+        }
+        else if(ch == 7) {
             ll.printList();
         }
-        else if(ch==6)
-        {
+        else if(ch == 8) {
             break;
         }
     }
 
+    return 0;
 }
