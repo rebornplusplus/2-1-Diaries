@@ -1,6 +1,13 @@
-#include<stdio.h>
-#include<stdlib.h>
+// If you kopy
+// and submit this kode
+// I will find you
+// and I will kiss you
 
+// 1605109
+// May 05 2018 1545
+
+#include <bits/stdc++.h>
+using namespace std;
 
 #define NULL_VALUE -99999
 #define SUCCESS_VALUE 99999
@@ -98,11 +105,11 @@ public:
     {
         //write your codes here
         if(getLength() == 0) return insertItem(item);
-        
+
         ListNode *newNode = new ListNode();
         newNode->item = item;
         newNode->next = 0;
-        
+
         ListNode *temp;
         temp = list;
         while(temp->next != 0) temp = temp->next;
@@ -116,7 +123,7 @@ public:
         //write your codes here
         ListNode *oldie = searchItem(oldItem);
         if(oldie == 0) return SUCCESS_VALUE;
-        
+
         ListNode *nexie = oldie->next;
         ListNode *newbie = new ListNode();
         newbie->item = newItem;
@@ -129,8 +136,8 @@ public:
     ListNode * getItemAt(int pos)
     {
          //write your codes here
-         if(pos > getLength() or pos < 1) return NULL_VALUE;
-         
+         if(pos > getLength() or pos < 1) return NULL;
+
          ListNode *temp = new ListNode();
          temp = list;
          for(int i=2; i<=pos; ++i) temp = temp->next;
@@ -141,7 +148,7 @@ public:
     {
         //write your codes here
         if(getLength() <= 0) return NULL_VALUE;
-        
+
         ListNode *temp = new ListNode();
         temp = list;
         list = list->next;
@@ -174,7 +181,8 @@ int main(void)
     while(1)
     {
         printf("1. Insert new item. 2. Delete item. 3. Search item. \n");
-        printf("4. (Add from homework). 5. Print. 6. exit.\n");
+        printf("4. Insert Last. 5. Insert after an element. 6. Get Item at.\n");
+        printf("7. Delete First. 8. Print. 9.Exit. \n");
 
         int ch;
         scanf("%d",&ch);
@@ -198,14 +206,40 @@ int main(void)
             if(res!=0) printf("Found.\n");
             else printf("Not found.\n");
         }
+        else if(ch == 4) {
+            int item;
+            scanf("%d", &item);
+            ll.insertLast(item);
+        }
         else if(ch==5)
         {
-            ll.printList();
+            printf("Old element: ");
+            int oldie;
+            scanf("%d", &oldie);
+            printf("New element: ");
+            int newbie;
+            scanf("%d", &newbie);
+            ll.insertAfter(oldie, newbie);
         }
         else if(ch==6)
         {
+            int pos;
+            scanf("%d", &pos);
+            ListNode *item = new ListNode();
+            item = ll.getItemAt(pos);
+            if(item == NULL) printf("No such positions found\n");
+            else printf("%d\n", item->item);
+        }
+        else if(ch == 7) {
+            ll.deleteFirst();
+        }
+        else if(ch == 8) {
+            ll.printList();
+        }
+        else if(ch == 9) {
             break;
         }
     }
 
+    return 0;
 }
