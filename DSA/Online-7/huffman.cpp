@@ -88,7 +88,7 @@ class max_heap {
 	}
 
 	void print() {
-	cout << " A ( " << sz << " " << len << " ) : ";
+		cout << " A ( " << sz << " " << len << " ) : ";
 		for(int i=0; i<sz; ++i) {
 			cout << a[i].f << " " << a[i].c << "; ";
 		} cout << "\n";
