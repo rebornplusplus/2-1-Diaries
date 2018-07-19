@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const double X2_MAX = 100000;	// X2_MAX = 2 * max(abs(a[i])); double the maximum absolute val
+const double X2_MAX = 100000;	// X2_MAX = 2 * max(abs(a[i])) + 1; double the maximum absolute val plus one.
 const int NOB = 5;	// Number of Buckets
 vector< double > buket[NOB];	// The Buckets
 
